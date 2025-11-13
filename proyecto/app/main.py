@@ -8,6 +8,11 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Trabajo Final DevOps (con SQLite)")
 
+@app.get("/")
+def root():
+    return {"message": "🚀 API del Trabajo Final DevOps funcionando correctamente"}
+
+
 # Dependencia para obtener sesión de BD en cada request
 def get_db():
     db = SessionLocal()

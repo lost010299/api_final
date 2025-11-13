@@ -1,0 +1,78 @@
+Archivo	Rol
+
+
+db.py	     #Configura SQLAlchemy, conexión y sesión a SQLite
+
+
+models.py	 #Define las tablas (ORM)
+
+
+schemas.py	 #Define validaciones y modelos de entrada/salida
+
+
+main.py  	#Contiene la lógica de endpoints y une todo
+
+
+tests/   	#Verifica la funcionalidad, validaciones y errores
+
+
+Dockerfile	#Empaqueta el proyecto como imagen Docker
+
+
+ci.yml	   # Ejecuta tests y build automáticos en GitHub Actions
+
+
+
+## Descripción general
+
+La API gestiona un recurso llamado **Item**, que contiene los campos:
+
+- `id` → identificador autogenerado.
+- `name` → nombre del item.
+- `value` → valor numérico.
+
+El proyecto incluye:
+- Endpoint de salud (`/health`).
+- Creación y consulta de items (`/api/items`).
+- Validaciones con Pydantic.
+- Manejo de errores JSON.
+- Base de datos SQLite persistente con SQLAlchemy.
+- Tests automáticos con pytest.
+- Pipeline de CI en GitHub Actions.
+- Dockerfile optimizado + docker-compose.
+
+
+app/
+├── main.py → Punto de entrada de la API
+├── db.py → Conexión y configuración de base de datos
+├── models.py → Definición de tablas (ORM)
+├── schemas.py → Validaciones (entrada/salida)
+└── init.py → Inicializador del paquete
+tests/
+├── test_health.py → Test del endpoint /health
+└── test_api.py → Tests de creación, validación y errores
+Dockerfile → Imagen optimizada (multi-stage)
+docker-compose.yml → Orquestación de servicios
+requirements.txt → Dependencias del proyecto
+.github/workflows/ci.yml → Pipeline de CI/CD
+
+
+
+
+
+#uso para el proyecto 
+
+1. creacion del contenedor
+docker build -t mi_api:local . (para crear la imagen q se usara en este proyecto)
+
+docker run -p 8000:8000 mi_api:local (Ejecuta el contenedor y expone/abrir  la API)
+
+
+2. creacion de entorno virtual
+python -m venv .venv (crea el entorno virtual)
+
+.venv\Scripts\activate(activa el entorno)
+
+pip install -r requirements.txt#descarga las Dependencias)
+3. tests
+ python -m pytest -q(hace los tests)
